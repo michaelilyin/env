@@ -9,6 +9,5 @@ i3-msg restart
 
 # TODO:
 #  * vsync
-#  * colors
 #  * icons (for ui)
 #  * fonts (only mat)

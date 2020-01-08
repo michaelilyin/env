@@ -160,6 +160,18 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+#for_window [class="^.*"] border pixel 0
+hide_edge_borders both
+
+# class                 border  backgr. text    indicator(TBD) child_border (TBD)
+client.focused          #476A6F #476A6F #DCDCDC #2e9ef4   #476A6F
+client.focused_inactive #525252 #525252 #B3B3B3 #484e50   #525252
+client.unfocused        #89A0A3 #89A0A3 #525252 #292d2e   #89A0A3
+client.urgent           #FBA922 #FBA922 #525252 #900000   #FBA922
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
 bindsym $mod+Control+l exec zsh ~/.config/i3/lock/lock.sh
 bindsym $mod+d exec "bash  ~/.config/i3/rofi/dmenu.sh"
 bindsym $mod+Tab exec "bash  ~/.config/i3/rofi/window.sh"
