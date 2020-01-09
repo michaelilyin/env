@@ -48,8 +48,8 @@ foreground-focused = ${colors.foreground-dark}
 
 foreground-contrast = ${colors.foreground-dark}
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+[bar/primary]
+monitor = ${env:PRIMARY_SCREEN:VGA-1}
 width = 100%
 height = 27
 radius = 0
@@ -87,7 +87,7 @@ font-7 = Inconsolata:style=Regular:size=10;0
 modules-left = i3
 ;modules-center = mpd
 ;xbacklight alsa powermenu
-modules-right = cpu memory filesystem pulseaudio wlan eth battery temperature xkeyboard date
+modules-right = cpu load-average memory filesystem pulseaudio wlan eth-h eth-w battery temperature xkeyboard date
 
 tray-position = right
 tray-padding = 2
@@ -100,6 +100,44 @@ tray-background = ${colors.background-normal}
 ;scroll-down = i3wm-wsprev
 ;cursor-click = pointer
 ;cursor-scroll = ns-resize
+
+[bar/secondary]
+monitor = ${env:SECONDARY_SCREEN:HDMI-1}
+width = 100%
+height = 27
+radius = 0
+fixed-center = false
+bottom = true
+
+background = ${colors.background-normal}
+foreground = ${colors.foreground-normal}
+
+overline-size = 2
+overline-color = ${colors.accent-normal}
+underline-size = 2
+underline-color = ${colors.accent-normal}
+
+line-size = 3
+
+border-top-size = 2
+border-top-color = ${colors.background-light}
+
+spacing = 3
+padding-left = 0
+padding-right = 2
+module-margin-left = 0
+module-margin-right = 2
+
+font-0 = Didact Gothic:size=9;0
+font-1 = FontAwesome:size=10;0
+font-2 = Material Icons:style=Regular:size=10;2
+font-3 = Unifont:size=8;0
+font-4 = NotoSans-Regular:size=8;-1
+font-5 = Unifont:size=8;0
+font-6 = Termsynu:size=7;0
+font-7 = Inconsolata:style=Regular:size=10;0
+
+modules-left = i3
 
 [module/xwindow]
 type = internal/xwindow
@@ -155,9 +193,9 @@ ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
 ws-icon-8 = 9;
 ws-icon-9 = 10;
 ws-icon-default = 
@@ -188,9 +226,10 @@ label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
-label-visible-background = ${self.label-focused-underline}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-foreground = ${colors.foreground-normal}
+label-visible-background = ${colors.background-normal}
+label-visible-underline = ${colors.accent-normal}
+label-visible-padding = ${self.label-unfocused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
@@ -212,17 +251,28 @@ icon-next = 
 label-song-maxlen = 25
 label-song-ellipsis = true
 
+[module/load-average]
+type = custom/script
+exec = uptime | grep -ohe 'load average[s:][: ].*' | awk '{ print $3" "$4" "$5 }'
+interval = 10
+
+;HOW TO SET IT MINIMAL 10 CHARACTERS - HIDDEN BEHIND SYSTEM ICONS
+label = %output%
+;label = %output:10%
+
+format-foreground = ${colors.foreground-normal}
+format-background = ${colors.background-normal}
+format-underline = ${colors.primary-normal}
+format-font = 8
+
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-spacing = 1
 format-prefix = " "
-format = <label><ramp-coreload>
+format = <ramp-coreload><bar-load>
 format-prefix-foreground = ${colors.foreground-normal}
 format-underline = ${colors.primary-normal}
-
-label = %percentage:2%%
-label-font = 8
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 6
@@ -249,14 +299,35 @@ ramp-coreload-7 = █
 ramp-coreload-7-font = 6
 ramp-coreload-7-foreground = ${colors.warn-normal}
 
+bar-load-width = 10
+bar-load-gradient = true
+bar-load-foreground-0 = ${colors.primary-light}
+bar-load-foreground-1 = ${colors.primary-light}
+bar-load-foreground-2 = ${colors.primary-normal}
+bar-load-foreground-3 = ${colors.primary-normal}
+bar-load-foreground-4 = ${colors.primary-normal}
+bar-load-foreground-5 = ${colors.accent-light}
+bar-load-foreground-6 = ${colors.accent-normal}
+bar-load-foreground-7 = ${colors.accent-dark}
+bar-load-foreground-8 = ${colors.warn-light}
+bar-load-foreground-9 = ${colors.warn-normal}
+bar-load-indicator = █
+bar-load-indicator-font = 6
+bar-load-indicator-foreground = ${colors.foreground-light}
+bar-load-fill = █
+bar-load-fill-font = 6
+bar-load-empty = █
+bar-load-empty-font = 6
+bar-load-empty-foreground = ${colors.foreground-dark}
+
 [module/memory]
 type = internal/memory
 interval = 2
 format-spacing = 1
 format-prefix = " "
-format = "<label><bar-used>"
+format = "<bar-used><label>"
 format-prefix-foreground = ${colors.foreground-normal}
-label = %percentage_used:2%%
+label = %gb_used%
 label-font = 8
 format-underline = ${colors.primary-normal}
 
@@ -305,13 +376,22 @@ ramp-signal-3-foreground = ${colors.accent-light}
 ramp-signal-4 = 
 ramp-signal-4-foreground = ${colors.primary-normal}
 
-[module/eth]
+[module/eth-h]
 type = internal/network
 interface = enp4s0f2
 interval = 3.0
 
 format-connected-underline = ${colors.primary-normal}
-format-connected-prefix = " "
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/eth-w]
+type = internal/network
+interface = enp4s0
+interval = 3.0
+
+format-connected-underline = ${colors.primary-normal}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -435,6 +515,7 @@ ramp-1 = 
 ramp-2 = 
 ramp-3 = 
 ramp-4 = 
+ramp-font = 2
 ramp-foreground = ${colors.foreground-normal}
 
 [settings]

@@ -25,3 +25,42 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+LOC_HOME="HOME";
+LOC_WORK="WORK";
+
+if [ -n "`hostname -A | grep -i relex || ""`" ]; then
+  LOCATION="$LOC_WORK";
+else
+  LOCATION="$LOC_HOME";
+fi
+
+CONNECTED_VGA=$(xrandr | grep " connected" | grep "VGA" | awk '{print$1}');
+CONNECTED_HDMI=$(xrandr | grep " connected" | grep "HDMI" | awk '{print$1}');
+CONNECTED_LVDS=$(xrandr | grep " connected" | grep "LVDS" | awk '{print$1}');
+
+unset PRIMARY_SCREEN
+unset SECONDARY_SCREEN
+
+case "$LOCATION" in
+  "$LOC_WORK")
+    PRIMARY_SCREEN="$CONNECTED_VGA";
+    if [ -n "$CONNECTED_HDMI" ]; then
+      SECONDARY_SCREEN="$CONNECTED_HDMI";
+    fi
+  ;;
+  "$LOC_HOME")
+    if [ -n "$CONNECTED_HDMI" ]; then
+      PRIMARY_SCREEN="$CONNECTED_HDMI";
+    else
+      PRIMARY_SCREEN="$CONNECTED_LVDS";
+    fi
+  ;;
+esac
+
+unset LOC_HOME
+unset LOC_WORK
+unset LOCATION
+unset CONNECTED_LVDS
+unset CONNECTED_HDMI
+unset CONNECTED_VGA

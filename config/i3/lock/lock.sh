@@ -9,7 +9,7 @@ IMAGE=/tmp/i3lock.png
 # Uncomment one to use, if you have multiple, the last one will be used
 
 # All options are here: http://www.imagemagick.org/Usage/blur/#blur_args
-BLURTYPE="0x4"
+BLURTYPE="0x8"
 #BLURTYPE="0x2"
 #BLURTYPE="5x2"
 #BLURTYPE="2x8"
