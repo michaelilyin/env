@@ -17,36 +17,25 @@
 ;==========================================================
 
 [colors]
-foreground-light = #DCDCDC
-foreground-normal = #B3B3B3
-foreground-dark = #525252
+foreground = #DCDCDC
+foreground-inverse = #212121
+foreground-secondary = #757575
 
-background-light = #595959
-background-normal = #1C1C1C
-background-dark = #0D0D0D
+background = #1C1C1C
 
-primary-light = #89A0A3
-primary-normal = #476A6F
-primary-dark = #2E4447
+divider = #BDBDBD
 
-accent-light = #FCC05E
-accent-normal = #FBA922
-accent-dark = #B77B19
+primary-light = #CFD8DC
+primary = #607D8B
+primary-dark = #455A64
 
-warn-light = #F39293
-warn-normal = #ED5456
-warn-dark = #AD3E3F
+accent-light = #FFECB3
+accent = #FFC107
+accent-dark = #FFA000
 
-disabled = ${colors.background-light}
-
-background = ${colors.background-normal}
-
-foreground = ${colors.foreground-normal}
-
-background-focused = ${colors.primary-light}
-foreground-focused = ${colors.foreground-dark}
-
-foreground-contrast = ${colors.foreground-dark}
+warn-light = #FFCCBC
+warn = #FF5722
+warn-dark = #E64A19
 
 [bar/primary]
 monitor = ${env:PRIMARY_SCREEN:VGA-1}
@@ -56,18 +45,18 @@ radius = 0
 fixed-center = false
 bottom = true
 
-background = ${colors.background-normal}
-foreground = ${colors.foreground-normal}
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 overline-size = 2
-overline-color = ${colors.accent-normal}
+overline-color = ${colors.accent}
 underline-size = 2
-underline-color = ${colors.accent-normal}
+underline-color = ${colors.accent}
 
 line-size = 3
 
 border-top-size = 2
-border-top-color = ${colors.background-light}
+border-top-color = ${colors.foreground-secondary}
 
 spacing = 3
 padding-left = 0
@@ -77,6 +66,7 @@ module-margin-right = 2
 
 font-0 = Didact Gothic:size=9;0
 font-1 = FontAwesome:size=10;0
+;https://shanfan.github.io/material-icons-cheatsheet/
 font-2 = Material Icons:style=Regular:size=10;2
 font-3 = Unifont:size=8;0
 font-4 = NotoSans-Regular:size=8;-1
@@ -84,14 +74,14 @@ font-5 = Unifont:size=8;0
 font-6 = Termsynu:size=7;0
 font-7 = Inconsolata:style=Regular:size=10;0
 
-modules-left = i3
+modules-left = i3 cpu memory temperature filesystem load-average
 ;modules-center = mpd
 ;xbacklight alsa powermenu
-modules-right = cpu load-average memory filesystem pulseaudio wlan eth-h eth-w battery temperature xkeyboard date
+modules-right = xkeyboard pulseaudio wlan eth-h eth-w battery date
 
 tray-position = right
 tray-padding = 2
-tray-background = ${colors.background-normal}
+tray-background = ${colors.background}
 
 ;wm-restack = i3
 
@@ -109,18 +99,18 @@ radius = 0
 fixed-center = false
 bottom = true
 
-background = ${colors.background-normal}
-foreground = ${colors.foreground-normal}
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 overline-size = 2
-overline-color = ${colors.accent-normal}
+overline-color = ${colors.accent}
 underline-size = 2
-underline-color = ${colors.accent-normal}
+underline-color = ${colors.accent}
 
 line-size = 3
 
 border-top-size = 2
-border-top-color = ${colors.background-light}
+border-top-color = ${colors.foreground-secondary}
 
 spacing = 3
 padding-left = 0
@@ -155,27 +145,27 @@ format-spacing = 1
 
 label-layout = %layout%
 label-layout-font = 8
-label-layout-underline = ${colors.primary-normal}
+label-layout-underline = ${colors.primary}
 
 ;label-layout-padding = 0
 ;label-layout-margin = 0
-indicator-icon-0 = caps lock;-A;A
+;maticon
+indicator-icon-0 = caps lock;-A;
 label-indicator = %icon%
 label-indicator-padding = 2
 ;label-indicator-margin = 0
-label-indicator-foreground = ${colors.foreground-contrast}
-label-indicator-background = ${colors.accent-normal}
-label-indicator-underline = ${colors.accent-normal}
-label-indicator-off-underline = ${colors.accent-normal}
+label-indicator-foreground = ${colors.accent}
+label-indicator-underline = ${colors.accent}
+label-indicator-off-underline = ${colors.accent}
 
 [module/filesystem]
 type = internal/fs
 interval = 25
 format-mounted-spacing = 1
-format-mounted-underline = ${colors.primary-normal}
+format-mounted-underline = ${colors.primary}
 format-mounted-prefix = " "
 format-unmounted-spacing = 1
-format-unmounted-underline = ${colors.accent-normal}
+format-unmounted-underline = ${colors.accent}
 format-unmounted-prefix = " "
 
 mount-0 = /
@@ -183,21 +173,22 @@ mount-0 = /
 label-mounted = %mountpoint%:%percentage_used:2%%
 label-mounted-font = 8
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-normal}
+label-unmounted-foreground = ${colors.foreground}
 label-unmounted-font = 8
 
 [module/i3]
 type = internal/i3
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
-ws-icon-9 = 10;
+ws-icon-0 = 1;1: 
+ws-icon-1 = 2;2: 
+ws-icon-2 = 3;3: 
+ws-icon-3 = 4;4: 
+ws-icon-4 = 5;5: 
+
+ws-icon-5 = 6;6: 
+ws-icon-6 = 7;7: 
+ws-icon-7 = 8;8: 
+ws-icon-8 = 9;9: 
+ws-icon-9 = 10;0: 
 ws-icon-default = 
 format = <label-state> <label-mode>
 index-sort = true
@@ -212,29 +203,29 @@ label-mode-padding = 2
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
-label-focused-background = ${colors.primary-normal}
-label-focused-foreground = ${colors.foreground-light}
-label-focused-underline= ${colors.accent-normal}
+label-focused-background = ${colors.primary}
+label-focused-foreground = ${colors.foreground}
+label-focused-underline= ${colors.accent}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
-label-unfocused-foreground = ${colors.foreground-normal}
-label-unfocused-background = ${colors.background-normal}
-label-unfocused-underline = ${colors.primary-normal}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-background = ${colors.background}
+label-unfocused-underline = ${colors.primary}
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
-label-visible-foreground = ${colors.foreground-normal}
-label-visible-background = ${colors.background-normal}
-label-visible-underline = ${colors.accent-normal}
+label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.background}
+label-visible-underline = ${colors.accent}
 label-visible-padding = ${self.label-unfocused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
-label-urgent-background = ${colors.accent-normal}
-label-urgent-foreground = ${colors.foreground-dark}
+label-urgent-background = ${colors.accent}
+label-urgent-foreground = ${colors.foreground-inverse}
 label-urgent-padding = 2
 
 
@@ -260,26 +251,27 @@ interval = 10
 label = %output%
 ;label = %output:10%
 
-format-foreground = ${colors.foreground-normal}
-format-background = ${colors.background-normal}
-format-underline = ${colors.primary-normal}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.primary}
 format-font = 8
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-spacing = 1
-format-prefix = " "
+format-prefix = " "
+format-prefix-font = 8
 format = <ramp-coreload><bar-load>
-format-prefix-foreground = ${colors.foreground-normal}
-format-underline = ${colors.primary-normal}
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.primary}
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 6
 ramp-coreload-0-foreground = ${colors.primary-light}
 ramp-coreload-1 = ▂
 ramp-coreload-1-font = 6
-ramp-coreload-1-foreground = ${colors.primary-normal}
+ramp-coreload-1-foreground = ${colors.primary}
 ramp-coreload-2 = ▃
 ramp-coreload-2-font = 6
 ramp-coreload-2-foreground = ${colors.primary-dark}
@@ -288,7 +280,7 @@ ramp-coreload-3-font = 6
 ramp-coreload-3-foreground = ${colors.accent-light}
 ramp-coreload-4 = ▅
 ramp-coreload-4-font = 6
-ramp-coreload-4-foreground = ${colors.accent-normal}
+ramp-coreload-4-foreground = ${colors.accent}
 ramp-coreload-5 = ▆
 ramp-coreload-5-font = 6
 ramp-coreload-5-foreground = ${colors.accent-dark}
@@ -297,60 +289,61 @@ ramp-coreload-6-font = 6
 ramp-coreload-6-foreground = ${colors.warn-light}
 ramp-coreload-7 = █
 ramp-coreload-7-font = 6
-ramp-coreload-7-foreground = ${colors.warn-normal}
+ramp-coreload-7-foreground = ${colors.warn}
 
 bar-load-width = 10
 bar-load-gradient = true
 bar-load-foreground-0 = ${colors.primary-light}
 bar-load-foreground-1 = ${colors.primary-light}
-bar-load-foreground-2 = ${colors.primary-normal}
-bar-load-foreground-3 = ${colors.primary-normal}
-bar-load-foreground-4 = ${colors.primary-normal}
+bar-load-foreground-2 = ${colors.primary}
+bar-load-foreground-3 = ${colors.primary}
+bar-load-foreground-4 = ${colors.primary}
 bar-load-foreground-5 = ${colors.accent-light}
-bar-load-foreground-6 = ${colors.accent-normal}
+bar-load-foreground-6 = ${colors.accent}
 bar-load-foreground-7 = ${colors.accent-dark}
 bar-load-foreground-8 = ${colors.warn-light}
-bar-load-foreground-9 = ${colors.warn-normal}
+bar-load-foreground-9 = ${colors.warn}
 bar-load-indicator = █
 bar-load-indicator-font = 6
-bar-load-indicator-foreground = ${colors.foreground-light}
+bar-load-indicator-foreground = ${colors.divider}
 bar-load-fill = █
 bar-load-fill-font = 6
 bar-load-empty = █
 bar-load-empty-font = 6
-bar-load-empty-foreground = ${colors.foreground-dark}
+bar-load-empty-foreground = ${colors.foreground-secondary}
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-spacing = 1
-format-prefix = " "
+format-prefix = " "
+format-prefix-font = 8
 format = "<bar-used><label>"
-format-prefix-foreground = ${colors.foreground-normal}
+format-prefix-foreground = ${colors.foreground}
 label = %gb_used%
 label-font = 8
-format-underline = ${colors.primary-normal}
+format-underline = ${colors.primary}
 
 bar-used-width = 10
 bar-used-gradient = true
 bar-used-foreground-0 = ${colors.primary-light}
 bar-used-foreground-1 = ${colors.primary-light}
-bar-used-foreground-2 = ${colors.primary-normal}
-bar-used-foreground-3 = ${colors.primary-normal}
-bar-used-foreground-4 = ${colors.primary-normal}
+bar-used-foreground-2 = ${colors.primary}
+bar-used-foreground-3 = ${colors.primary}
+bar-used-foreground-4 = ${colors.primary}
 bar-used-foreground-5 = ${colors.accent-light}
-bar-used-foreground-6 = ${colors.accent-normal}
+bar-used-foreground-6 = ${colors.accent}
 bar-used-foreground-7 = ${colors.accent-dark}
 bar-used-foreground-8 = ${colors.warn-light}
-bar-used-foreground-9 = ${colors.warn-normal}
+bar-used-foreground-9 = ${colors.warn}
 bar-used-indicator = █
 bar-used-indicator-font = 6
-bar-used-indicator-foreground = ${colors.foreground-light}
+bar-used-indicator-foreground = ${colors.divider}
 bar-used-fill = █
 bar-used-fill-font = 6
 bar-used-empty = █
 bar-used-empty-font = 6
-bar-used-empty-foreground = ${colors.foreground-dark}
+bar-used-empty-foreground = ${colors.foreground-secondary}
 
 [module/wlan]
 type = internal/network
@@ -381,7 +374,7 @@ type = internal/network
 interface = enp4s0f2
 interval = 3.0
 
-format-connected-underline = ${colors.primary-normal}
+format-connected-underline = ${colors.primary}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -391,7 +384,9 @@ type = internal/network
 interface = enp4s0
 interval = 3.0
 
-format-connected-underline = ${colors.primary-normal}
+format-connected-prefix = " "
+format-connected-prefix-font = 8
+format-connected-underline = ${colors.primary}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -407,15 +402,15 @@ time = %H:%M:%S
 ;time-alt = %H:%M:%S
 
 format-prefix = 
-format-prefix-foreground = ${colors.foreground-normal}
-format-underline = ${colors.primary-normal}
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.primary}
 
-label =  %date%  %time%
+label =  %date%  %time%
 label-font = 8
 
 [module/pulseaudio]
 type = internal/pulseaudio
-format-volume-underline = ${colors.primary-normal}
+format-volume-underline = ${colors.primary}
 format-muted-underline = ${colors.accent-light}
 
 format-volume-spacing = 1
@@ -423,35 +418,36 @@ format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage:2%%
 label-volume-font = 8
 label-volume-foreground = ${colors.foreground}
-ramp-volume-0 = 
-ramp-volume-0-foreground = ${colors.accent-normal}
-ramp-volume-1 = 
-ramp-volume-1-foreground = ${colors.primary-light}
-ramp-volume-2 = 
-ramp-volume-2-foreground = ${colors.primary-light}
-ramp-volume-3 = 
-ramp-volume-3-foreground = ${colors.primary-light}
-ramp-volume-4 = 
-ramp-volume-4-foreground = ${colors.primary-light}
-ramp-volume-5 = 
-ramp-volume-5-foreground = ${colors.primary-normal}
-ramp-volume-6 = 
-ramp-volume-6-foreground = ${colors.primary-normal}
-ramp-volume-7 = 
-ramp-volume-7-foreground = ${colors.primary-normal}
-ramp-volume-8 = 
-ramp-volume-8-foreground = ${colors.primary-normal}
-ramp-volume-9 = 
-ramp-volume-9-foreground = ${colors.accent-normal}
-ramp-volume-10 = 
-ramp-volume-10-foreground = ${colors.warn-normal}
-ramp-volume-11 = 
-ramp-volume-11-foreground = ${colors.warn-dark}
+ramp-volume-0 = ""
+ramp-volume-0-foreground = ${colors.accent}
+ramp-volume-1 = ""
+ramp-volume-1-foreground = ${colors.foreground}
+ramp-volume-2 = ""
+ramp-volume-2-foreground = ${colors.foreground}
+ramp-volume-3 = ""
+ramp-volume-3-foreground = ${colors.foreground}
+ramp-volume-4 = ""
+ramp-volume-4-foreground = ${colors.foreground}
+ramp-volume-5 = ""
+ramp-volume-5-foreground = ${colors.foreground}
+ramp-volume-6 = ""
+ramp-volume-6-foreground = ${colors.foreground}
+ramp-volume-7 = ""
+ramp-volume-7-foreground = ${colors.foreground}
+ramp-volume-8 = ""
+ramp-volume-8-foreground = ${colors.foreground}
+ramp-volume-9 = ""
+ramp-volume-9-foreground = ${colors.foreground}
+ramp-volume-10 = ""
+ramp-volume-10-foreground = ${colors.accent}
+ramp-volume-11 = ""
+ramp-volume-11-foreground = ${colors.warn}
 
-format-muted = " M"
-format-muted-foreground = ${colors.accent-light}
+;maticon
+format-muted-prefix = " "
+format-muted-foreground = ${colors.accent}
 label-muted = %percentage:2%%
-label-muted-font = 8
+label-muted-prefix-font = 8
 
 [module/battery]
 type = internal/battery
@@ -462,7 +458,7 @@ full-at = 98
 format-charging-spacing = 1
 format-charging-prefix = "  "
 format-charging = <label-charging>
-format-charging-underline = ${colors.primary-normal}
+format-charging-underline = ${colors.primary}
 label-charging = %percentage:2%%
 label-charging-font = 8
 
@@ -472,7 +468,7 @@ format-discharging-underline = ${self.format-charging-underline}
 label-discharging-font = 8
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-normal}
+format-full-prefix-foreground = ${colors.foreground}
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
@@ -480,16 +476,16 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.foreground-normal}
+ramp-capacity-foreground = ${colors.foreground}
 
 ;animation-charging-0 = 
 ;animation-charging-1 = 
-;animation-charging-foreground = ${colors.foreground-normal}
+;animation-charging-foreground = ${colors.foreground}
 ;animation-charging-framerate = 1000
 
 ;animation-discharging-0 = 
 ;animation-discharging-1 = 
-;animation-discharging-foreground = ${colors.foreground-normal}
+;animation-discharging-foreground = ${colors.foreground}
 ;animation-discharging-framerate = 1000
 
 [module/temperature]
@@ -500,15 +496,15 @@ warn-temperature = 80
 
 format-spacing = 1
 format = <ramp> <label>
-format-underline = ${colors.primary-normal}
+format-underline = ${colors.primary}
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${colors.accent-normal}
+format-warn-underline = ${colors.accent}
 
 label = %temperature-c:3%
 label-font = 8
 label-warn =  %temperature-c:3%
 label-warn-font = 8
-label-warn-foreground = ${colors.foreground-normal}
+label-warn-foreground = ${colors.foreground}
 
 ramp-0 = 
 ramp-1 = 
@@ -516,7 +512,7 @@ ramp-2 = 
 ramp-3 = 
 ramp-4 = 
 ramp-font = 2
-ramp-foreground = ${colors.foreground-normal}
+ramp-foreground = ${colors.foreground}
 
 [settings]
 screenchange-reload = true

@@ -25,17 +25,17 @@ set $ws10 10
 set $mainoutput   VGA-1
 set $secondoutput HDMI-1
 
-workspace $ws2 output $secondoutput
-workspace $ws4 output $secondoutput
+workspace $ws1 output $mainoutput
+workspace $ws2 output $mainoutput
+workspace $ws3 output $mainoutput
+workspace $ws4 output $mainoutput
+workspace $ws5 output $mainoutput
+
 workspace $ws6 output $secondoutput
+workspace $ws7 output $secondoutput
 workspace $ws8 output $secondoutput
 workspace $ws9 output $secondoutput
 workspace $ws10 output $secondoutput
-
-workspace $ws1 output $mainoutput
-workspace $ws3 output $mainoutput
-workspace $ws5 output $mainoutput
-workspace $ws7 output $mainoutput
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -178,11 +178,11 @@ bindsym $mod+r mode "resize"
 #for_window [class="^.*"] border pixel 0
 hide_edge_borders both
 
-# class                 border  backgr. text    indicator(TBD) child_border (TBD)
-client.focused          #476A6F #476A6F #DCDCDC #2e9ef4   #476A6F
-client.focused_inactive #525252 #525252 #B3B3B3 #484e50   #525252
-client.unfocused        #89A0A3 #89A0A3 #525252 #292d2e   #89A0A3
-client.urgent           #FBA922 #FBA922 #525252 #900000   #FBA922
+# class                 border  backgr. text    indicator(TBD) child_border
+client.focused          #607D8B #607D8B #DCDCDC #2e9ef4   #607D8B
+client.focused_inactive #757575 #757575 #DCDCDC #484e50   #757575
+client.unfocused        #CFD8DC #CFD8DC #212121 #292d2e   #CFD8DC
+client.urgent           #FBA922 #FBA922 #212121 #900000   #FBA922
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
@@ -209,11 +209,14 @@ exec_always feh --bg-fill ~/.config/i3/wallpaper/wp.jpg
 exec_always --no-startup-id setxkbmap -layout us,ru -option 'grp:win_space_toggle'
 exec_always --no-startup-id "bash ~/.config/i3/polybar/launch.sh"
 
-for_window [class="jetbrains-idea" title="win0"] floating enable;
+for_window [class="jetbrains-idea" title="win.*"] floating enable;
 
-assign [instance="google-chrome.*IntelliJIdea.*"] $ws7
-assign [class="jetbrains-idea"] $ws3
+assign [instance="google-chrome.*IntelliJIdea.*"] $ws5
+assign [class="jetbrains-idea"] $ws2
 assign [class="TelegramDesktop"] $ws10
-assign [class="Google-chrome" title=".*(Календарь|Calendar).*"] $ws8
-assign [class="Google-chrome" title=".*JIRA.*"] $ws6
+assign [class="Mattermost"] $ws10
+
+assign [class="Google-chrome" title=".*(Bitbucket|BITBUCKET).*"] $ws4
+assign [class="Google-chrome" title=".*(Календарь|Calendar).*"] $ws9
+assign [class="Google-chrome" title=".*JIRA.*"] $ws8
 assign [class="Google-chrome"] $ws1
