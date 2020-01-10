@@ -5,7 +5,7 @@ sudo apt install -y i3
 sudo apt install -y zsh terminator
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-sudo apt install -y scrot feh rofi brightnessctl
+sudo apt install -y scrot feh rofi brightnessctl bc lm-sensors
 sudo cp ./rules/backlight.rules /etc/udev/rules.d/
 sudo usermod -aG video "$USER"
 
@@ -13,6 +13,9 @@ sudo apt install -y cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev l
 
 sudo apt install -y fonts-font-awesome unifont
 
+sudo add-apt-repository ppa:amanusk/python-s-tui
+sudo apt update
+sudo apt install -y python3-s-tui
 
 # autoremove
 sudo apt autoremove -y

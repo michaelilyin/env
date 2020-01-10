@@ -195,6 +195,7 @@ bindsym $mod+Tab exec "bash  ~/.config/i3/rofi/window.sh"
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym $mod+m exec --no-startup-id amixer set Capture toggle
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec brightnessctl s +5%
