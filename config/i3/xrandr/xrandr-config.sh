@@ -22,3 +22,10 @@ fi
 if [ -n "$NEED_SHUTDOWN" ]; then
   xrandr --output "$NEED_SHUTDOWN" --off
 fi
+
+SHUT=$(xrandr | grep disconnected | awk '{print$1}')
+for out in $SHUT
+do
+  xrandr --output "$out" --off
+done
+

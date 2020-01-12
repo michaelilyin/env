@@ -209,6 +209,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
 # Touchpad controls
 bindsym XF86TouchpadToggle exec "bash ~/.config/i3/touchpad/toggle.sh"
 
+exec --no-startup-id compton -b
 exec_always zsh ~/.config/i3/xrandr/xrandr-config.sh
 exec_always feh --bg-fill ~/.config/i3/wallpaper/wp.jpg
 

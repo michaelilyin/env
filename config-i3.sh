@@ -3,6 +3,7 @@
 cp -r ./config/polybar "$HOME/.config"
 cp -r ./config/i3 "$HOME/.config"
 
+cp ./compton.conf "$HOME/.compton.conf"
 cp ./profile "$HOME/.profile"
 chmod u+rx "$HOME/.profile"
 
