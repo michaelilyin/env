@@ -2,8 +2,7 @@
 
 VER=3.4.2
 
-cd "$HOME" || exit
-mkdir -p polybar && cd polybar || exit
+mkdir -p /tmp/polybar && cd /tmp/polybar || exit
 
 rm "polybar-$VER.tar"
 rm -r "polybar-$VER"
@@ -16,3 +15,6 @@ cd "polybar-$VER/polybar" || exit
 ./build.sh --all-features
 
 cd "$HOME" || exit
+sudo rm -r /tmp/polybar
+
+sudo apt autoremove -y

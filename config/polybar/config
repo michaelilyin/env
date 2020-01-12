@@ -38,7 +38,7 @@ warn = #FF5722
 warn-dark = #E64A19
 
 [bar/primary]
-monitor = ${env:PRIMARY_SCREEN:VGA-1}
+monitor = ${env:PRIMARY_SCREEN}
 width = 100%
 height = 27
 radius = 0
@@ -77,7 +77,7 @@ font-7 = Inconsolata:style=Regular:size=10;0
 modules-left = i3 cpu memory temperature filesystem load-average
 ;modules-center = mpd
 ;xbacklight alsa powermenu
-modules-right = xkeyboard mic pulseaudio wlan eth-h eth-w battery date alsa
+modules-right = xkeyboard mic pulseaudio wlan eth-h eth-w battery date
 
 tray-position = right
 tray-padding = 2
@@ -92,7 +92,7 @@ tray-background = ${colors.background}
 ;cursor-scroll = ns-resize
 
 [bar/secondary]
-monitor = ${env:SECONDARY_SCREEN:HDMI-1}
+monitor = ${env:SECONDARY_SCREEN}
 width = 100%
 height = 27
 radius = 0
@@ -128,6 +128,10 @@ font-6 = Termsynu:size=7;0
 font-7 = Inconsolata:style=Regular:size=10;0
 
 modules-left = i3
+
+[module/screen]
+type = custom/text
+content = ${env:PRIMARY_SCREEN}
 
 [module/xwindow]
 type = internal/xwindow
@@ -362,22 +366,22 @@ interval = 3.0
 
 format-connected-spacing = 1
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = ${colors.primary-normal}
-label-connected = %essid%(%local_ip%)
+format-connected-underline = ${colors.primary}
+label-connected = %essid%
 label-connected-font = 8
 
 format-disconnected =
 
-ramp-signal-0 = 
-ramp-signal-0-foreground = ${colors.warn-normal}
-ramp-signal-1 = 
-ramp-signal-1-foreground = ${colors.warn-light}
-ramp-signal-2 = 
-ramp-signal-2-foreground = ${colors.accent-normal}
-ramp-signal-3 = 
-ramp-signal-3-foreground = ${colors.accent-light}
-ramp-signal-4 = 
-ramp-signal-4-foreground = ${colors.primary-normal}
+ramp-signal-0 = 
+ramp-signal-0-foreground = ${colors.warn}
+ramp-signal-1 = 
+ramp-signal-1-foreground = ${colors.warn}
+ramp-signal-2 = 
+ramp-signal-2-foreground = ${colors.accent}
+ramp-signal-3 = 
+ramp-signal-3-foreground = ${colors.foreground}
+ramp-signal-4 = 
+ramp-signal-4-foreground = ${colors.foreground}
 
 [module/eth-h]
 type = internal/network
@@ -415,7 +419,7 @@ format-prefix =
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.primary}
 
-label =  %date%  %time%
+label =  %time%  %date%
 label-font = 8
 
 [module/pulseaudio]

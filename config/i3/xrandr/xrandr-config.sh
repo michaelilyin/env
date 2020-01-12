@@ -1,22 +1,24 @@
 #!/usr/bin/zsh
 
-HDMI=$(xrandr | grep "HDMI" | awk '{print$1}')
-VGA_CONNECTED=$(xrandr | grep " connected" | grep "VGA" | awk '{print$1}')
-HDMI_CONNECTED=$(xrandr | grep " connected" | grep "HDMI" | awk '{print$1}')
+source ~/.config/i3/env/env.sh
 
-LVDS=$(xrandr | grep "LVDS" | awk '{print$1}')
+PRIMARY_RESOLUTION=$(xrandr | grep -A 1 "$PRIMARY_SCREEN" | tail -n 1 | awk '{print$1}')
+xrandr --output "$PRIMARY_SCREEN" --primary --mode "$PRIMARY_RESOLUTION"
 
-if [ -n "$LVDS" ]; then
-  if [ -n "$HDMI_CONNECTED" ]; then
-    xrandr --output "$HDMI_CONNECTED" --primary --mode 1920x1080
-    xrandr --output "$LVDS" --off
-  else
-    xrandr --output "$HDMI" --off
-    xrandr --output "$LVDS" --primary --mode 1366x768
-  fi
-else
-  xrandr --output "$VGA_CONNECTED" --primary --mode 1920x1080
-  if [ -n "$HDMI_CONNECTED" ]; then
-    xrandr --output "$HDMI_CONNECTED" --mode 1280x1024 --left-of "$VGA_CONNECTED"
-  fi
+if [ -n "$SECONDARY_SCREEN" ]; then
+  SECONDARY_RESOLUTION=$(xrandr | grep -A 1 "$SECONDARY_SCREEN" | tail -n 1 | awk '{print$1}')
+  xrandr --output "$SECONDARY_SCREEN" --primary --mode "$SECONDARY_RESOLUTION"
+
+  case "$LOCATION" in
+    "$LOC_HOME")
+      xrandr --output "$SECONDARY_SCREEN" --left-of "$PRIMARY_SCREEN"
+    ;;
+    "$LOC_WORK")
+      xrandr --output "$SECONDARY_SCREEN" --left-of "$PRIMARY_SCREEN"
+    ;;
+  esac
+fi
+
+if [ -n "$NEED_SHUTDOWN" ]; then
+  xrandr --output "$NEED_SHUTDOWN" --off
 fi
