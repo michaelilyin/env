@@ -192,6 +192,8 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 
+focus_follows_mouse no
+
 bindsym $mod+Control+l exec zsh ~/.config/i3/lock/lock.sh
 bindsym $mod+d exec "bash  ~/.config/i3/rofi/dmenu.sh"
 bindsym $mod+Tab exec "bash  ~/.config/i3/rofi/window.sh"
@@ -217,14 +219,19 @@ exec_always --no-startup-id setxkbmap -layout us,ru -option 'grp:win_space_toggl
 exec_always --no-startup-id "bash ~/.config/i3/polybar/launch.sh"
 
 for_window [class="jetbrains-idea" title="win.*"] floating enable;
+for_window [class="jetbrains-toolbox"] floating enable;
 
 assign [instance="google-chrome.*IntelliJIdea.*"] $ws5
-assign [class="jetbrains-idea"] $ws2
-assign [class="TelegramDesktop"] $ws10
-assign [class="Mattermost"] $ws10
-assign [class="X-terminal-emulator"] $ws6
 
 assign [class="Google-chrome" title=".*(Bitbucket|BITBUCKET).*"] $ws4
+assign [class="Google-chrome" title=".*(TimeCamp).*"] $ws9
 assign [class="Google-chrome" title=".*(Календарь|Calendar).*"] $ws9
 assign [class="Google-chrome" title=".*JIRA.*"] $ws8
 assign [class="Google-chrome"] $ws1
+
+assign [class="jetbrains-idea"] $ws2
+assign [class="whatsdesk"] $ws10
+assign [class="TelegramDesktop"] $ws10
+assign [class="kmail2"] $ws10
+assign [class="Mattermost"] $ws10
+assign [class="X-terminal-emulator"] $ws6

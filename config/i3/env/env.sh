@@ -36,7 +36,7 @@ case "$LOCATION" in
   "$LOC_WORK")
     export PRIMARY_SCREEN="$CONNECTED_VGA";
 
-    if [ -n "$CONNECTED_HDMI" ] && [ "$MODE" == "multiple" ]; then
+    if [ -n "$CONNECTED_HDMI" ] && [ "$MODE" = "multiple" ]; then
       export SECONDARY_SCREEN="$CONNECTED_HDMI";
     else
       export NEED_SHUTDOWN="$CONNECTED_HDMI"
